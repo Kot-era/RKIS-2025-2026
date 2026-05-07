@@ -136,7 +136,7 @@ th,td{padding:8px 10px;font-size:.8rem}
 <div class="content">
 @if(session('success'))<div class="alert alert-success">{{session('success')}}</div>@endif
 @if(session('error'))<div class="alert alert-error">{{session('error')}}</div>@endif
-@if($errors->any())<div class="alert alert-error">@foreach($errors->all() as $e)<div>{{$e}}</div>@endforeach</div>@endif
+@if(!empty($errors) && $errors->any())<div class="alert alert-error">@foreach($errors->all() as $e)<div>{{$e}}</div>@endforeach</div>@endif
 @yield('content')
 </div>
 </div>
