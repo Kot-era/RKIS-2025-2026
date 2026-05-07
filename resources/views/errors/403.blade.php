@@ -1,0 +1,4 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>403 - Доступ запрещён</title><link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<style>body{margin:0;font-family:system-ui,sans-serif;background:#f3f4f6;display:flex;align-items:center;justify-content:center;min-height:100vh;}.box{text-align:center;padding:3rem;background:#fff;border-radius:1rem;box-shadow:0 4px 24px rgba(0,0,0,.08);max-width:420px;width:90%;}h1{font-size:5rem;margin:0;color:#dc2626;}h2{color:#374151;margin:.5rem 0 1rem;}p{color:#6b7280;margin-bottom:1.5rem;}a{display:inline-block;background:linear-gradient(135deg,#6366f1,#2563eb);color:#fff;text-decoration:none;padding:.6rem 1.5rem;border-radius:.5rem;font-weight:600;}</style>
+</head><body><div class="box"><h1>403</h1><h2>Доступ запрещён</h2><p>У вас нет прав для просмотра этой страницы.</p><a href="/dashboard">На главную</a></div></body></html>
