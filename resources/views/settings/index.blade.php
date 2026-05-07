@@ -47,5 +47,15 @@
         </div>
         <button type="submit" class="btn btn-primary">Сохранить изменения</button>
     </form>
+
+<div style="margin-top:32px;padding-top:24px;border-top:1px solid #e2e8f0;">
+    <form method="POST" action="{{route('logout')}}">
+        @csrf
+        <button type="submit" class="btn" style="background:#fee2e2;color:#dc2626;border:1px solid #fca5a5;width:100%;padding:12px;font-size:1rem;font-weight:600;border-radius:8px;cursor:pointer;">
+            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:8px;"><path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h6a2 2 0 012 2v1"/></svg>
+            Выйти из аккаунта
+        </button>
+    </form>
+</div>
 </div>
 @endsection
