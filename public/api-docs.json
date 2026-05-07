@@ -1,0 +1,66 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "AttendoStud API",
+    "description": "API системы учёта посещаемости студентов",
+    "version": "1.0.0"
+  },
+  "servers": [{"url": "https://attendostud.pro", "description": "Production"}],
+  "components": {
+    "securitySchemes": {
+      "sessionAuth": {"type": "apiKey", "in": "cookie", "name": "attendostud_session"}
+    }
+  },
+  "paths": {
+    "/login": {
+      "get": {"summary": "Страница входа", "tags": ["Auth"], "responses": {"200": {"description": "HTML форма входа"}}},
+      "post": {
+        "summary": "Авторизация пользователя", "tags": ["Auth"],
+        "requestBody": {"required": true, "content": {"application/x-www-form-urlencoded": {"schema": {"type": "object", "properties": {"login": {"type": "string", "example": "student1"}, "password": {"type": "string", "example": "demo1234"}}, "required": ["login", "password"]}}}},
+        "responses": {"302": {"description": "Redirect на /dashboard при успехе"}, "422": {"description": "Ошибка валидации"}}
+      }
+    },
+    "/logout": {
+      "post": {"summary": "Выход из системы", "tags": ["Auth"], "security": [{"sessionAuth": []}], "responses": {"302": {"description": "Redirect на /login"}}}
+    },
+    "/dashboard": {
+      "get": {"summary": "Главная страница (дашборд)", "tags": ["Dashboard"], "security": [{"sessionAuth": []}], "responses": {"200": {"description": "HTML дашборд"}, "302": {"description": "Redirect на /login если не авторизован"}}}
+    },
+    "/news": {
+      "get": {"summary": "Список новостей", "tags": ["News"], "security": [{"sessionAuth": []}], "responses": {"200": {"description": "HTML список новостей"}}}
+    },
+    "/schedule": {
+      "get": {"summary": "Расписание занятий", "tags": ["Schedule"], "security": [{"sessionAuth": []}], "responses": {"200": {"description": "HTML расписание"}}}
+    },
+    "/attendance": {
+      "get": {"summary": "Посещаемость студента", "tags": ["Attendance"], "security": [{"sessionAuth": []}], "responses": {"200": {"description": "HTML таблица посещаемости по предметам"}}}
+    },
+    "/attendance/teacher": {
+      "get": {"summary": "Посещаемость (учитель) — список предметов", "tags": ["Attendance"], "security": [{"sessionAuth": []}], "responses": {"200": {"description": "HTML список расписаний для отметки"}}}
+    },
+    "/attendance/mark/{scheduleId}": {
+      "get": {
+        "summary": "Форма отметки посещаемости", "tags": ["Attendance"], "security": [{"sessionAuth": []}],
+        "parameters": [{"name": "scheduleId", "in": "path", "required": true, "schema": {"type": "integer"}}],
+        "responses": {"200": {"description": "HTML форма с радиокнопками для студентов"}}
+      },
+      "post": {
+        "summary": "Сохранить отметки посещаемости", "tags": ["Attendance"], "security": [{"sessionAuth": []}],
+        "parameters": [{"name": "scheduleId", "in": "path", "required": true, "schema": {"type": "integer"}}],
+        "requestBody": {"required": true, "content": {"application/x-www-form-urlencoded": {"schema": {"type": "object", "properties": {"date": {"type": "string", "format": "date"}, "attendance": {"type": "object"}}}}}},
+        "responses": {"302": {"description": "Redirect обратно с сообщением об успехе"}}
+      }
+    },
+    "/settings": {
+      "get": {"summary": "Страница профиля/настроек", "tags": ["Settings"], "security": [{"sessionAuth": []}], "responses": {"200": {"description": "HTML форма редактирования профиля"}}},
+      "post": {
+        "summary": "Обновить профиль", "tags": ["Settings"], "security": [{"sessionAuth": []}],
+        "requestBody": {"required": true, "content": {"multipart/form-data": {"schema": {"type": "object", "properties": {"first_name": {"type": "string"}, "last_name": {"type": "string"}, "email": {"type": "string", "format": "email"}, "avatar": {"type": "string", "format": "binary"}, "current_password": {"type": "string"}, "password": {"type": "string"}, "password_confirmation": {"type": "string"}}}}}},
+        "responses": {"302": {"description": "Redirect с сообщением об успехе/ошибке"}}
+      }
+    },
+    "/admin": {
+      "get": {"summary": "Панель администратора", "tags": ["Admin"], "security": [{"sessionAuth": []}], "responses": {"200": {"description": "HTML панель администратора"}, "403": {"description": "Доступ запрещён"}}}
+    }
+  }
+}

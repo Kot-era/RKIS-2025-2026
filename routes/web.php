@@ -46,3 +46,9 @@ Route::middleware(['admin.auth'])->prefix('admin')->name('admin.')->group(functi
 
 Route::get('/password/reset', fn() => redirect('/login'))->name('password.request');
 Route::get('/', fn() => redirect('/dashboard'));
+
+Route::get('/docs', function() { return view('swagger'); })->name('docs');
+
+Route::get('/api-docs.json', function() {
+    return response()->file(public_path('api-docs.json'), ['Content-Type' => 'application/json']);
+})->name('api.docs.json');

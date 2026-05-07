@@ -27,6 +27,7 @@ class AttendanceController extends Controller
 
     public function teacherIndex()
     {
+        if (Auth::user()->role !== 'teacher') { abort(403); }
         $schedules=DB::table('schedules')->where('teacher_id',Auth::id())->get();
         return view('attendance.teacher',compact('schedules'));
     }

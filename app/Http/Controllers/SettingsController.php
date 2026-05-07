@@ -25,6 +25,7 @@ class SettingsController extends Controller
             'email'        => 'nullable|email|max:150|unique:users,email,' . $user->id,
             'password'     => 'nullable|string|min:6|confirmed',
             'current_password' => 'nullable|string',
+            'avatar'           => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ], [
             'email.unique'    => 'Этот email уже используется.',
             'password.min'    => 'Пароль должен быть не менее 6 символов.',
@@ -44,6 +45,11 @@ class SettingsController extends Controller
         if ($request->filled('first_name')) $user->first_name = $request->first_name;
         if ($request->filled('patronymic')) $user->patronymic = $request->patronymic;
         if ($request->filled('email'))      $user->email      = $request->email;
+
+        if ($request->hasFile('avatar')) {
+            $path = $request->file('avatar')->store('avatars', 'public');
+            $user->avatar = $path;
+        }
 
         $user->save();
 

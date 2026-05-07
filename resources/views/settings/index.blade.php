@@ -3,8 +3,25 @@
 @section('page-title', 'Настройки профиля')
 @section('content')
 <div class="card" style="max-width:600px">
-    <form method="POST" action="{{ route('settings.update') }}">
+    <form method="POST" action="{{ route('settings.update') }}" enctype="multipart/form-data">
         @csrf
+
+    {{-- Avatar --}}
+    <div style="margin-bottom:24px;text-align:center;">
+        @if($user->avatar)
+            <img src="{{ Storage::url($user->avatar) }}" alt="Аватар"
+                 style="width:100px;height:100px;border-radius:50%;object-fit:cover;border:3px solid #e2e8f0;margin-bottom:12px;display:block;margin-left:auto;margin-right:auto;">
+        @else
+            <div style="width:100px;height:100px;border-radius:50%;background:#e2e8f0;display:flex;align-items:center;justify-content:center;margin:0 auto 12px auto;">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+            </div>
+        @endif
+        <label style="display:inline-block;cursor:pointer;background:#f1f5f9;border:1px solid #e2e8f0;border-radius:8px;padding:8px 16px;font-size:0.9rem;color:#475569;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:4px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            Загрузить фото
+            <input type="file" name="avatar" accept="image/*" style="display:none;" onchange="this.parentElement.querySelector('span') && (this.parentElement.querySelector('span').textContent = this.files[0].name)">
+        </label>
+    </div>
         <div class="grid-2">
             <div class="form-group">
                 <label class="form-label">Фамилия</label>
