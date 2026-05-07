@@ -2,7 +2,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<title>@yield('title','&#1040;&#1090;&#1090;&#1077;&#1085;&#1076;&#1086;&#1057;&#1090;&#1091;&#1076;')</title>
+<title>@yield('title','АттендоСтуд')</title>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="shortcut icon" href="/favicon.svg">
 <style>
@@ -118,8 +118,7 @@ th,td{padding:8px 10px;font-size:.8rem}
 <a href="{{route('schedule.index')}}" class="{{request()->routeIs('schedule.*')?'active':''}}"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>&#1056;&#1072;&#1089;&#1087;&#1080;&#1089;&#1072;&#1085;&#1080;&#1077;</a>
 @if(auth()->user()->role==='student')
 <a href="{{route('attendance.student')}}" class="{{request()->routeIs('attendance.student')?'active':''}}"><svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>&#1055;&#1086;&#1089;&#1077;&#1097;&#1072;&#1077;&#1084;&#1086;&#1089;&#1090;&#1100;</a>
-@endif
-@if(auth()->user()->role==='teacher')
+@elseif(auth()->user()->role==='teacher')
 <a href="{{route('attendance.teacher')}}" class="{{request()->routeIs('attendance.*')?'active':''}}"><svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>&#1055;&#1086;&#1089;&#1077;&#1097;&#1072;&#1077;&#1084;&#1086;&#1089;&#1090;&#1100;</a>
 @endif
 <a href="{{route('news.index')}}" class="{{request()->routeIs('news.*')?'active':''}}"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 10h16M4 14h10"/></svg>&#1053;&#1086;&#1074;&#1086;&#1089;&#1090;&#1080;</a>
@@ -151,8 +150,7 @@ th,td{padding:8px 10px;font-size:.8rem}
 @endif
 @if(auth()->user()->role==='student')
 <a href="{{route('attendance.student')}}" class="{{request()->routeIs('attendance.student')?'active':''}}"><svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>&#1055;&#1086;&#1089;&#1077;&#1097;&#1072;&#1077;&#1084;&#1086;&#1089;&#1090;&#1100;</a>
-@endif
-@if(auth()->user()->role==='teacher')
+@elseif(auth()->user()->role==='teacher')
 <a href="{{route('attendance.teacher')}}" class="{{request()->routeIs('attendance.*')?'active':''}}"><svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>&#1055;&#1086;&#1089;&#1077;&#1097;&#1072;&#1077;&#1084;&#1086;&#1089;&#1090;&#1100;</a>
 @endif
 <a href="{{route('news.index')}}" class="{{request()->routeIs('news.*')?'active':''}}"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 10h16M4 14h10"/></svg>&#1053;&#1086;&#1074;&#1086;&#1089;&#1090;&#1080;</a>

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','&#1043;&#1083;&#1072;&#1074;&#1085;&#1072;&#1103;')
+@section('title', 'Главная')
 @section('content')
 <?php
 $u=auth()->user();$isSt=$u->role==='student';$isTe=$u->role==='teacher';$isAd=$u->role==='admin';
